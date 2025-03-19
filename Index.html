@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Satisfaction Survey</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #001F3F;
+      color: black;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .logo {
+      width: 150px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #001F3F;
+      font-weight: 600;
+    }
+
+    select, button {
+      padding: 12px;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 2px solid #001F3F;
+      background-color: white;
+      color: black;
+      cursor: pointer;
+      margin-top: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+    }
+
+    select:hover, button:hover {
+      background-color: #001F3F;
+      color: white;
+    }
+
+    button {
+      background-color: #ff9800;
+      color: white;
+      font-weight: 500;
+      border: none;
+    }
+
+    button:hover {
+      background-color: #e68900;
+    }
+  </style>
+
+  <script>
+    function showSubOptions() {
+      const department = document.getElementById('department-selector').value;
+      const subDeptContainer = document.getElementById('sub-department-container');
+      
+      if (department === 'SUP') {
+        subDeptContainer.style.display = 'block';
+      } else {
+        subDeptContainer.style.display = 'none';
+      }
+    }
+
+    function navigateToSurvey() {
+      const department = document.getElementById('department-selector').value;
+      const subDepartment = document.getElementById('sub-department-selector')?.value;
+      
+      const surveyLinks = {
+        "QS": "https://forms.gle/Diheo2yP5dzqL9ah6",
+        "TM": "https://forms.gle/9gKduGT1if3fMqYM8",
+        "STRU": "https://forms.gle/jmA3ZTTSbbEvWLUD7",
+        "Mil": "https://forms.gle/4ZCxePYrwvYW8aKfA",
+        "IT": "https://forms.gle/SgipSKZyjH4DR3Ek9",
+        "Inf": "https://forms.gle/ZfsTK7Z44CtGVkJe9",
+        "LS": "https://forms.gle/BaK1izeiba2vXxrJ6",
+        "BD": "https://forms.gle/fiw6KTMo3B4rVpVDA",
+        "CC": "https://forms.gle/y7Mu1TSBoCiREEQY6",
+        "ID": "https://forms.gle/wVC4ikjF74SHhk6M9",
+        "HRBP": "https://forms.gle/fL9K1CEbhUD22wNm6",
+        "DC": "https://forms.gle/yM1xrMMiZC3XzzhQ8",
+        "PER": "https://forms.gle/fAzbh7sE384S54s6A",
+        "DS": "https://forms.gle/mfzZvP6Lavr6eS9a8",
+        "WD": "https://forms.gle/Rn8D2ffRNaZza26i6",
+        "FIN": "https://forms.gle/wSNsY5u7gb71Dgo87",
+        "PM": "https://forms.gle/PcYJSQQp2BZ8uU778",
+
+        "SUP": {
+          "ICOCT": "https://forms.gle/vKJs2SyttU2RH49v6",
+          "COP": "https://forms.gle/Pv5dALu9jedDPevc7",
+          "OPE": "https://forms.gle/aph9UTc2AqjQBBdPA",
+          "ICNC": "https://forms.gle/QKpSxKqM8whcLdsb6",
+          "ADA": "https://forms.gle/kYaNLx1cwm8ETfEG6",
+          "SHR": "https://forms.gle/TNUnk3fgVTk7K535A",
+          "VAI": "https://forms.gle/N8eNQR9oVqRvtJ4R6",
+          "SMR": "https://forms.gle/KanhcuBAzvaFC3rr8",
+          "GOL": "https://forms.gle/PRp4PWLwok95BS8g6",
+          "PAR": "https://forms.gle/rVywe7kyPQmkt8Rr6",
+          "LVL": "https://forms.gle/7UqTDPgiqgG7SwHz8",
+          "ROY": "https://forms.gle/HzxwVPtTZnf7nzkP7",
+          "LAN": "https://forms.gle/FPs4YMNNR9QTtMqDA",
+          "MOSH": "https://forms.gle/fbctbvSLJ61hotN26",
+          "PARK": "https://forms.gle/awLkPoejTJWWp7ca7"
+        }
+      };
+
+      let selectedSurvey = department === 'SUP' ? surveyLinks[department][subDepartment] : surveyLinks[department];
+
+      if (selectedSurvey) {
+        window.open(selectedSurvey, '_blank'); // Open in a new tab
+      } else {
+        alert("Please select a valid department and subdivision.");
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <img src="dma.png" alt="Company Logo" class="logo">
+    <h1>Employee Satisfaction Survey</h1>
+    <div class="survey-options">
+      <select id="department-selector" onchange="showSubOptions()">
+        <option value="" disabled selected>Select a department...</option>
+        <option value="QS">Quantity Survey Department</option>
+        <option value="SUP">Supervision Department</option>
+        <option value="TM">Top Management Department</option>
+        <option value="STRU">Structure Department</option>
+        <option value="Mil">Military Department</option>
+        <option value="IT">Information Technology Department</option>
+        <option value="Inf">Infrastructure Department</option>
+        <option value="LS">Landscape Department</option>
+        <option value="BD">Business Development Department</option>
+        <option value="CC">Cost Control Department</option>
+        <option value="ID">Interior Design Department</option>
+        <option value="HRBP">HRBP Department</option>
+        <option value="DC">Document Control Department</option>
+        <option value="PER">Permits Department</option>
+        <option value="DS">Design Department</option>
+        <option value="WD">Working Drawings Department</option>
+        <option value="FIN">Finance Department</option>
+        <option value="PM">Projects Management Department</option>
+      </select>
+    </div>
+    <div id="sub-department-container" style="display: none;">
+      <h2>Select Subdivision</h2>
+      <select id="sub-department-selector">
+        <option value="" disabled selected>Select a subdivision...</option>
+        <option value="ICOCT">I-City October</option>
+        <option value="COP">Chillout Park</option>
+        <option value="OPE">October Park Extension</option>
+	<option value="ICNC">I-City N/C</option>
+	<option value="ADA">Al-Adala</option>
+	<option value="SHR">Sheraton</option>
+	<option value="VAI">VAI</option>
+	<option value="SMR">Smart</option>
+	<option value="GOL">Golf</option>
+	<option value="LVL">LVLS</option>
+	<option value="ROY">Royal Monark</option>
+	<option value="LAN">Lana</option>
+	<option value="MOSH">Al-Moshir</option>
+	<option value="PARK">Park Lane</option>
+      </select>
+    </div>
+    <button onclick="navigateToSurvey()">Start Survey</button>
+  </div>
+</body>
+</html>
